@@ -3,13 +3,14 @@ import { useForm } from "react-hook-form";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { useAtom } from "jotai";
 import { searchHistoryAtom } from "@/store";
+import { addToHistory } from "@/lib/userData";
 
 export default function AdvancedSearch() {
     const router = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
 
-    function submitForm(data) {
+    async function submitForm(data) {
         let queryString = "";
 
         queryString += `${data.searchBy}=true`;
@@ -26,7 +27,7 @@ export default function AdvancedSearch() {
         queryString += `&isHighlight=${data.isHighlight}`;
         queryString += `&q=${data.q}`;
 
-        setSearchHistory(current => [...current, queryString]);
+        setSearchHistory(await addToHistory(queryString));
         
         router.push(`/artwork?${queryString}`);
     }

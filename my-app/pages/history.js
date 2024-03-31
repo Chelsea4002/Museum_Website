@@ -3,10 +3,14 @@ import { searchHistoryAtom } from "@/store";
 import { useAtom } from "jotai";
 import { Card, Button, ListGroup } from 'react-bootstrap';
 import { useRouter } from 'next/router';
+import { removeFromHistory } from '@/lib/userData';
 
 export default function History() {
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
     const router = useRouter();
+
+    if(!searchHistory) return null;
+
 
     let parsedHistory = [];
 
@@ -20,13 +24,9 @@ export default function History() {
         router.push(`/artwork?${searchHistory[index]}`)
     }
 
-    const removeHistoryClicked = (e, index) => {
+    const removeHistoryClicked = async (e, index) => {
         e.stopPropagation(); // stop the event from trigging other events
-        setSearchHistory(current => {
-            let x = [...current];
-            x.splice(index, 1)
-            return x;
-        });
+        setSearchHistory(await removeFromHistory(searchHistory[index]));
     }
 
     return (
