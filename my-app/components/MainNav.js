@@ -5,12 +5,22 @@ import { useState } from "react";
 import { useAtom } from "jotai";
 import { searchHistoryAtom } from "@/store";
 import { addToHistory } from "@/lib/userData";
+import { readToken, removeToken } from "@/lib/authenticate";
 
 export default function MainNav() {
     const router = useRouter();
+
     const [searchField, setSearchField] = useState("");
     const [isExpanded, setIsExpanded] = useState(false);
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
+    const [expanded, setExpanded] = useState(false);
+
+    let token = readToken();
+
+    function logout(){
+        removeToken();
+        router.push("/login");
+    }
 
     const onChange = (e) => {
         setSearchField(e.target.value);
@@ -45,10 +55,10 @@ export default function MainNav() {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Link href="/" passHref legacyBehavior><Nav.Link active={router.pathname === "/"} onClick={handleNavLink}>Home</Nav.Link></Link>
-                            <Link href="/search" passHref legacyBehavior><Nav.Link active={router.pathname === "/search"} onClick={handleNavLink}>Advanced Search</Nav.Link></Link>
+                            {token && <Link href="/search" passHref legacyBehavior><Nav.Link active={router.pathname === "/search"} onClick={handleNavLink}>Advanced Search</Nav.Link></Link>}
                         </Nav>
                         &nbsp;
-                        <Form className="d-flex" onSubmit={submitForm}>
+                        {token && <Form className="d-flex" onSubmit={submitForm}>
                             <Form.Control
                                 type="search"
                                 placeholder="Search"
@@ -58,18 +68,31 @@ export default function MainNav() {
                                 onChange={onChange}
                             />
                             <Button variant="outline-success" type="submit">Search</Button>
-                        </Form>
+                        </Form>}
                         &nbsp;
                         <Nav>
-                            <NavDropdown title="User Name" id="basic-nav-dropdown">
+                            {token && <NavDropdown title={token.userName} id="basic-nav-dropdown">
                                 <Link href="/favourites" passHref legacyBehavior>
-                                    <NavDropdown.Item active={router.pathname === "/favourites"} onClick={handleDropdownItem}>Favourites</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={handleDropdownItem}>Favourites</NavDropdown.Item>
                                 </Link>
                                 <Link href="/history" passHref legacyBehavior>
-                                    <NavDropdown.Item active={router.pathname === "/history"} onClick={handleDropdownItem}>Search History</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={handleDropdownItem}>Search History</NavDropdown.Item>
                                 </Link>
-                            </NavDropdown>
+                                <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+                            </NavDropdown>}
                         </Nav>
+                        {!token && <Nav className="ml-auto">
+                            <Link href="/register" passHref legacyBehavior>
+                                <Nav.Link active={router.pathname === "/register"} onClick={()=>setExpanded(false)}>
+                                    Register
+                                </Nav.Link>
+                            </Link>
+                            <Link href="/login" passHref legacyBehavior>
+                                <Nav.Link active={router.pathname === "/login"} onClick={()=>setExpanded(false)}>
+                                    Login
+                                </Nav.Link>
+                            </Link>
+                        </Nav>}
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
