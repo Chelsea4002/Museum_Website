@@ -1,12 +1,14 @@
 /*********************************************************************************
-* WEB422 – Assignment 5
+* WEB422 – Assignment 6
 *
 * I declare that this assignment is my own work in accordance with Seneca's
 * Academic Integrity Policy:
 * 
 * https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
 * 
-* Name: Hyerang Cho     Student ID: 165832221      Date: March 22, 2024
+* Name: Hyerang Cho       Student ID: 165832221     Date: April 11, 2024
+*
+* Vercel App (Deployed) Link: _____________________________________________________
 *
 ********************************************************************************/
 
