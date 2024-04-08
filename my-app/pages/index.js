@@ -8,7 +8,7 @@
 * 
 * Name: Hyerang Cho       Student ID: 165832221     Date: April 11, 2024
 *
-* Vercel App (Deployed) Link: _____________________________________________________
+* Vercel App (Deployed) Link: https://web422-assignment6-oglotpwx4-chelsea4002s-projects.vercel.app
 *
 ********************************************************************************/
 
