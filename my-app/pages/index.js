@@ -1,17 +1,3 @@
-/*********************************************************************************
-* WEB422 – Assignment 6
-*
-* I declare that this assignment is my own work in accordance with Seneca's
-* Academic Integrity Policy:
-* 
-* https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
-* 
-* Name: Hyerang Cho       Student ID: 165832221     Date: April 11, 2024
-*
-* Vercel App (Deployed) Link: https://web422-assignment6-oglotpwx4-chelsea4002s-projects.vercel.app
-*
-********************************************************************************/
-
 import Image from 'react-bootstrap/Image';
 import { Row, Col } from "react-bootstrap";
 
