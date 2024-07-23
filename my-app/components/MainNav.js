@@ -6,6 +6,7 @@ import { useAtom } from "jotai";
 import { searchHistoryAtom } from "@/store";
 import { addToHistory } from "@/lib/userData";
 import { readToken, removeToken } from "@/lib/authenticate";
+import Image from 'react-bootstrap/Image';
 
 export default function MainNav() {
     const router = useRouter();
@@ -48,9 +49,13 @@ export default function MainNav() {
 
     return (
         <>
-            <Navbar expand="lg" className="fixed-top navbar-dark bg-primary" expanded={isExpanded}>
+            <Navbar expand="lg" className="fixed-top navbar-dark bg-primary fs-4" expanded={isExpanded}>
                 <Container>
-                    <Navbar.Brand>Hyerang Cho</Navbar.Brand>
+                    <Navbar.Brand>
+                        <div className="logo-container">
+                            <Image src="/logo.png" className="logo-image" />
+                        </div>
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={toogleNavbar} />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
@@ -62,23 +67,23 @@ export default function MainNav() {
                             <Form.Control
                                 type="search"
                                 placeholder="Search"
-                                className="me-2"
+                                className="me-2 large-placeholder"
                                 aria-label="Search"
                                 value={searchField}
                                 onChange={onChange}
                             />
-                            <Button variant="outline-success" type="submit">Search</Button>
+                            <Button variant="outline-success" className="fs-4" type="submit">Search</Button>
                         </Form>}
                         &nbsp;
                         <Nav>
                             {token && <NavDropdown title={token.userName} id="basic-nav-dropdown">
                                 <Link href="/favourites" passHref legacyBehavior>
-                                    <NavDropdown.Item onClick={handleDropdownItem}>Favourites</NavDropdown.Item>
+                                    <NavDropdown.Item className="fs-4" onClick={handleDropdownItem}>Favourites</NavDropdown.Item>
                                 </Link>
                                 <Link href="/history" passHref legacyBehavior>
-                                    <NavDropdown.Item onClick={handleDropdownItem}>Search History</NavDropdown.Item>
+                                    <NavDropdown.Item className="fs-4" onClick={handleDropdownItem}>Search History</NavDropdown.Item>
                                 </Link>
-                                <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+                                <NavDropdown.Item className="fs-4" onClick={logout}>Logout</NavDropdown.Item>
                             </NavDropdown>}
                         </Nav>
                         {!token && <Nav className="ml-auto">

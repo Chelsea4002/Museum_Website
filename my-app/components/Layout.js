@@ -6,7 +6,7 @@ export default function Layout(props) {
         <>
             <MainNav />
             <br />
-            <Container>
+            <Container className="fs-4">
                 {props.children}
             </Container>
             <br />

@@ -42,7 +42,7 @@ export default function Register(props){
                 <Form.Label>Confirm Password:</Form.Label><Form.Control type="password" value={password2} id="password2" name="password2" onChange={e => setPassword2(e.target.value)} />
                 </Form.Group>
                 <br />
-                <Button variant="primary" className="pull-right" type="submit">Register</Button>
+                <Button variant="primary" className="pull-right fs-4" type="submit">Register</Button>
             </Form>
             { warning && ( <><br /><Alert variant="danger">{warning}</Alert></> )}
         </>

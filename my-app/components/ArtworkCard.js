@@ -22,7 +22,7 @@ export default function ArtworkCard({objectID}) {
                         <strong>Medium: </strong> {data.medium || "N/A"}
                     </Card.Text>
                     <Link href={`/artwork/${objectID}`} passHref>
-                        <Button variant="outline-primary"><strong>ID:</strong> {objectID}</Button>
+                        <Button variant="outline-primary fs-4"><strong>ID:</strong> {objectID}</Button>
                     </Link>
                 </Card.Body>
             </Card>

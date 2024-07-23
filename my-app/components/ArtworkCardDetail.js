@@ -45,7 +45,7 @@ export default function ArtworkCardDetail({objectID}) {
                             {data.artistWikidata_URL && <>{' '}( <a href={data.artistWikidata_URL} target="_blank" rel="noreferrer" >wiki</a> )</>}<br />
                         <strong>Credit Line: </strong> {data.creditLine || "N/A"}<br />
                         <strong>Dimensions: </strong> {data.dimensions || "N/A"}<br /><br />
-                        <Button variant={showAdded ? "primary" : "outline-primary"} onClick={favouritesClicked}>
+                        <Button variant={showAdded ? "primary" : "outline-primary"} className="fs-4" onClick={favouritesClicked}>
                             {showAdded ? "+ Favourite (added)" : "+ Favourite"}
                         </Button>
                     </Card.Text>
